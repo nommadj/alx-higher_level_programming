@@ -1,23 +1,25 @@
 #!/usr/bin/python3
-"""This module has a function to print blank line"""
+"""
+This is the "5-test_indentation" module.
+The 5-text_indentation module supplies one function, text_indentation(text).
+"""
 
 
 def text_indentation(text):
-    """This is a function to print blank line
-        args: 
-            text(str)
-        Raises:
-            TypeError: if text is not a string
-    """
-    if not isinstance(text, str):
-        raise TypeError('text must be a string')
-
-    chars = ['.', '?', ':']
-    
-    is_split = False
-
-    for char in text:
-        print(char, end='')
-
-        if char in chars:
-            print("\n", end='')
+    """splits a text into lines along "?", ":", "." followed by 2 new lines"""
+    if type(text) is not str:
+        raise TypeError("text must be a string")
+    flag = 0
+    for a in text:
+        if flag == 0:
+            if a == ' ':
+                continue
+            else:
+                flag = 1
+        if flag == 1:
+            if a == '?' or a == '.' or a == ':':
+                print(a)
+                print()
+                flag = 0
+            else:
+                print(a, end="")
