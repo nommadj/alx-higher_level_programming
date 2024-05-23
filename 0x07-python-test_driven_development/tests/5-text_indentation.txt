@@ -1,44 +1,60 @@
-#This is are testcases for text_indentation function
-#The function prints new line after each . or ? or :
+The ``text_indentation`` module
+==========================
 
->>> text_indentation = __import__('5-text_indentation').text_indentation
+Using ``text_indentation``
+---------------------
 
->>> text_indentation("Hello?")
-Hello?
+First import ``text_indentation`` from the ``text_indentation`` module:
 
-#Test Case 1:
->>> text_indentation(" Hello.")
-Hello.
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
 
-#Test Case 2:
->>> text_indentation("Hello. ")
-Hello.
+Now use it:
 
-#Test Case 3:
->>> text_indentation(" This now. is great. ")
-This now
+	>>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi: litteram videor an totas paginas commovere")
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	<BLANKLINE>
+	Quonam modo?
+	<BLANKLINE>
+	Utrum igitur tibi:
+	<BLANKLINE>
+	litteram videor an totas paginas commovere
 
-is great
+	>>> text_indentation("Lorem:")
+	Lorem:
+	<BLANKLINE>
 
+	>>> text_indentation("Terry")
+	Terry
 
-#Test Case 4:
->>> text_indentation("I love python, C and Java")
-I love python, C and Java
+	>>> text_indentation(":Terry")
+	:
+	<BLANKLINE>
+	Terry
 
-#Test Case 5:
->>> text_indentation("\nThis is a new line.")
+	>>> text_indentation(":")
+	:
+	<BLANKLINE>
 
-This is a new line.
+	>>> text_indentation(":.")
+	:
+	<BLANKLINE>
+	.
+	<BLANKLINE>
 
+	>>> text_indentation(" ")
 
-#Test Case 6:
->>> text_indentation(7):
-Traceback (most recent call last):
+	>>> text_indentation("")
+
+	>>> text_indentation(" .")
+	.
+	<BLANKLINE>
+
+	>>> text_indentation(-2)
+	Traceback (most recent call last):
 	...
-TypeError: text must be a string
+	TypeError: text must be a string
 
-#Test Case 7:
->>> text_indentation(None)
-Traceback (most recent call last):
+	>>> text_indentation(None)
+	Traceback (most recent call last):
 	...
-TypeError: text must be a string
+	TypeError: text must be a string

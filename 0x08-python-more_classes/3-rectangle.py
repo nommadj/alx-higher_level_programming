@@ -1,112 +1,61 @@
 #!/usr/bin/python3
-"""This module defines a class Rectangle"""
+
+"""creates a Rectangle class that defines a rectangle"""
 
 
 class Rectangle:
-    """This is definion of  a classs
-    Attributes:
-        width(int): width of rectangle
-        height(int): height of rectangle
+    """A class that defines a Rectangle"""
 
-    methods:
-        __init__: initializes width and height
-        width(self):getter
-        width(self, value): setter
-        height(self): gets height
-        height(self, value): sets height
-
-    """
     def __init__(self, width=0, height=0):
-        """This method initializes width and height
-
-        args:
-            width(int): defaults to 0
-            height(int): defaults to 0
-
-        """
-        self.__width = width
-        self.__height = height
+        """" initializes a rectangle"""
+        self.width = width
+        self.height = height
 
     @property
     def width(self):
-        """This method retrieves the height
-        Returns:
-            width(int): width
-        """
+        """Retrieves an attribute"""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """This method sets the width to value
-        args:
-            value(int): value to be set
-
-        Raises:
-            TypeError: if value is not an int
-            ValueError: if value is < 0
-
-        """
+        """sets the width of the rectangle"""
         if not isinstance(value, int):
-            raise TypeError('width must be an integer')
-        elif value < 0:
-            raise ValueError('width must be >= 0')
-        else:
-            self.__width = value
+            raise TypeError("width must be an integer")
+        if value < 0:
+            raise ValueError("width must be >= 0")
+
+        self.__width = value
 
     @property
     def height(self):
-        """This methods gets height
-        Returns:
-            height(int):height of rectangle
-
-        """
+        """retrieve an attribute"""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """This method sets the value of height
-        args:
-            value(int): value to be sett
-
-        Raises:
-            TypeError: if value is not integer
-            ValueError: if value is < 0
-
-        """
+        """Sets the heuight of the rectangle"""
         if not isinstance(value, int):
-            raise TypeError('height must be an integer')
-        elif value < 0:
-            raise ValueError('height must be >= 0')
-        else:
-            self.__height = value
+            raise TypeError("height must be an integer")
+        if value < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = value
 
     def area(self):
-        """This method returns the area of rectangle
-        Returns:
-            int:area of rectangle
-
-        """
-        return self.__height * self.__width
+        """Find the area of a rectangle"""
+        return self.width * self.height
 
     def perimeter(self):
-        """This method returns perimeter
-        Returns:
-            int:perimeter
-
-        """
-        result = 0
+        """find the perimeter of a rectangle"""
         if self.__height == 0 or self.__width == 0:
-            result = 0
-        else:
-            result = 2 * (self.__height + self.__width)
-        return result
+            return 0
+        return 2 * (self.height + self.width)
 
     def __str__(self):
-        """This method prints # charcater"""
-        if self.__height == 0 or self.__width == 0:
-            return ""
-        else:
-            result = ""
-            for i in range(self.__height):
-                result += "#" * self.__width + "\n"
-            return result[:-1]
+        """Sets the print behavior of the Rectangle object."""
+        rectangle = ""
+
+        if self.__width > 0 and self.__height > 0:
+            for y in range(self.__height):
+                rectangle += '#' * self.__width + '\n'
+
+        return rectangle[:-1]
