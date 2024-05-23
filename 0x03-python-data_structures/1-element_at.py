@@ -1,9 +1,9 @@
 #!/usr/bin/python3
+'''retrieves an element'''
+
 
 def element_at(my_list, idx):
-    if idx < 0:
-        return
-    elif idx >= len(my_list):
-        return
+    if idx < 0 or idx > len(my_list) - 1:
+        return None
     else:
-        return my_list[idx]
+        return (my_list[idx])

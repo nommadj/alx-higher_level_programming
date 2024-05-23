@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
+
 def multiple_returns(sentence):
-    if not sentence:
+    """Returns the length of a string and its first character."""
+    if sentence == "":
         return (0, None)
-    else:
-        return (len(sentence), sentence[0])
+    return (len(sentence), sentence[0])
