@@ -1,21 +1,13 @@
 #!/usr/bin/python3
-"""This module defines a class with instance variable"""
+"""Define a class Square."""
 
 
 class Square:
-    """A class that defines a square
-
-    Attributes:
-    __size(int): Private instance attribute representing the size of a square
-
-    Methods:
-    __init__(self, size): constructor to initialize the size variable
-    """
+    """Represent a square."""
 
     def __init__(self, size):
-        """Initializes a new Square instance.
-
+        """Initialize a new Square.
         Args:
-            size(int): The size of the square
+            size (int): The size of the new square.
         """
         self.__size = size

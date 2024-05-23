@@ -1,82 +1,38 @@
 #!/usr/bin/python3
-"""This module defines the class Square"""
+"""Define a class Square."""
 
 
 class Square:
-    """This is the definition of Square class
+    """Represent a square."""
 
-    Attributes:
-        __size(int): Size of the square
-
-    Methods:
-        area(self): returns the area of of square
-        size(self): getter method
-        size(self, value): setter method
-        my_print(self):print # int the stdout
-
-    """
-    def __init__(self, size=0):
-        """This method initializes the size variable
-
+    def __init__(self, size):
+        """Initialize a new square.
         Args:
-            size(int):size of the square
-
-        Raises:
-            TypeError:if the size is not integer
-            ValueError: if size is less than 0
-
+            size (int): The size of the new square.
         """
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
-        elif size < 0:
-            raise ValueError("size must be >= 0")
-
-        self.__size = size
+        self.size = size
 
     @property
     def size(self):
-        """This is a getter method
-
-        Returns:
-            int: value of size
-
-        """
-        return self.__size
+        """Get/set the current size of the square."""
+        return (self.__size)
 
     @size.setter
     def size(self, value):
-        """This is a setter method
-
-        Args:
-            value: value to set to size
-
-        Raises:
-            TypeError: if the size is not an integer
-            ValueError: if the size is < 0
-
-        """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
+        self.__size = value
 
     def area(self):
-        """This is a public instance method
-
-        Returns:
-            int:value of the area
-
-        """
-        return self.__size * self.__size
+        """Return the current area of the square."""
+        return (self.__size * self.__size)
 
     def my_print(self):
-        """This is a public instance method
-
-        """
+        """Print the square with the # character."""
+        for i in range(0, self.__size):
+            [print("#", end="") for j in range(self.__size)]
+            print("")
         if self.__size == 0:
-            print()
-        else:
-            for _ in range(self.__size):
-                for _ in range(self.__size):
-                    print("#", end="")
-                print()
+            print("")
