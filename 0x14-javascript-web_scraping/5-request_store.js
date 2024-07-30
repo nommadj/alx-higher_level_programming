@@ -1,20 +1,17 @@
 #!/usr/bin/node
 
-// script that gets the contents of a webpage and stores it in a file.
 const request = require('request');
 const fs = require('fs');
+const url = process.argv[2];
+const fileName = process.argv[3];
 
-const apiUrl = process.argv[2];
-const file = process.argv[3];
-
-// Make an HTTP GET request to the specified URL
-request(apiUrl, function (error, response, body) {
-  if (error) {
-    console.error(error);
+request(url, function (err, response, body) {
+  if (err) {
+    console.error(err);
   } else {
-    fs.writeFile(file, body, 'utf-8', function (error, data) {
-      if (error) {
-        console.error(error);
+    fs.writeFile(fileName, body, 'utf-8', (writeError) => {
+      if (writeError) {
+        console.error(writeError);
       }
     });
   }

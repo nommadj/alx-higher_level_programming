@@ -1,30 +1,28 @@
 #!/usr/bin/node
 
 const request = require('request');
-const movieId = process.argv[2];
+const id = process.argv[2];
+const url = `https://swapi-api.alx-tools.com/api/films/${id}`;
 
-// Make an HTTP GET request to the Star Wars API to get information about the specified movie
-request(`https://swapi.dev/api/films/${movieId}/`, function (error, response, body) {
-  if (error) {
-    console.error(error);
-  } else if (response.statusCode !== 200) {
-    console.error(`Failed to retrieve movie information. Status code: ${response.statusCode}`);
+request(url, function (err, response, body) {
+  if (err) {
+    console.error(err);
   } else {
-    const movieData = JSON.parse(body);
-    const charactersUrls = movieData.characters;
+    const actors = JSON.parse(body).characters;
 
-    // Fetch character information for each character URL
-    charactersUrls.forEach(characterUrl => {
-      request(characterUrl, function (error, response, characterBody) {
-        if (error) {
-          console.error(error);
-        } else if (response.statusCode !== 200) {
-          console.error(`Failed to retrieve character information. Status code: ${response.statusCode}`);
-        } else {
-          const characterData = JSON.parse(characterBody);
-          console.log(characterData.name);
-        }
-      });
-    });
+    function printOrder (i) {
+      if (i < actors.length) {
+        request(actors[i], function (err, response, body) {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(JSON.parse(body).name);
+            printOrder(i + 1);
+          }
+        });
+      }
+    }
+    
+    printOrder(0);
   }
 });

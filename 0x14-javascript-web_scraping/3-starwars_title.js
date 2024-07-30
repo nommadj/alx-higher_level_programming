@@ -1,16 +1,14 @@
 #!/usr/bin/node
 
-// prints the title of a Star Wars movie
 const request = require('request');
-const movieId = process.argv[2];
+const id = process.argv[2];
+const url = `https://swapi-api.alx-tools.com/api/films/${id}`;
 
-// API URL with the provided movie ID
-const apiurl = 'https://swapi-api.alx-tools.com/api/films/' + movieId;
-request(apiurl, function (error, response, body) {
-  if (error) {
-    console.log(error);
+request(url, function (err, response, body) {
+  if (err) {
+    console.error(err);
   } else {
-    const content = JSON.parse(body);
-    console.log(content.title);
+    const movies = JSON.parse(body);
+    console.log(movies.title);
   }
 });

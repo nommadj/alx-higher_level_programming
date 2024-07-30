@@ -1,18 +1,21 @@
 #!/usr/bin/node
 
-// prints the number of movies
 const request = require('request');
-const apiUrl = process.argv[2];
+const url = process.argv[2];
 
-// Make an HTTP GET request to the API
-request(apiUrl, function (error, response, body) {
-  if (!error) {
-    const results = JSON.parse(body).results;
-    const moviesWithWedge = results.reduce((count, movie) => {
-      return movie.characters.find((character) => character.endsWith('/18/'))
-        ? count + 1
-        : count;
-    }, 0);
-    console.log(moviesWithWedge);
+request(url, function (err, response, body) {
+  if (err) {
+    console.error(err);
+  } else {
+    let count = 0;
+    const movies = JSON.parse(body).results;
+    for (const movie of movies) {
+      for (const wa of movie.characters) {
+        if (wa.includes('/18/')) {
+          count += 1;
+	}
+      }
+    }
+    console.log(count);
   }
 });
